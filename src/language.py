@@ -2,13 +2,17 @@ from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag, word_tokenize
 
 lemmatizer = WordNetLemmatizer()
-def lemmatize(s):
+def lemmatize2(s):
     if s:
-        return " ".join(lemmatizer.lemmatize(w) for w in word_tokenize(s)).lower()
+        # One way
+        # return " ".join(lemmatizer.lemmatize(w) for w in word_tokenize(s)).lower()
+        # An other
+        return " ".join(lemmatizer.lemmatize(w.lower()) for w in word_tokenize(s))
     return ''
 
-def pos_tagging(s):
-    return pos_tag(word_tokenize(s))
+lemma = dict()
+def lemmatize(s):
+    return lemma.get(s,s)
 
 def jaccard(s1, s2):
     try:
@@ -50,7 +54,6 @@ def trust(t, l):
 if __name__ == "__main__":
     #print word_tokenize('fly flies married marrying woman women man men corpus corpora scenario scenarii')
     #print lemmatize('fly flies married marrying woman women man men corpus corpora scenario scenarii porcine species')
-    #print pos_tagging('The big blue eyes of the girl are nice') 
     s1 = 'black water marsh'
     s2 = 'water black marsh'
     s4 = 'marsh'
