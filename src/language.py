@@ -49,3 +49,22 @@ def closest_in_list(t, l):
 
 def trust(t, l):
     return dict((c, bow_jac_dist(t, c)) for c in l) 
+
+
+if __name__ == "__main__":
+    #print word_tokenize('fly flies married marrying woman women man men corpus corpora scenario scenarii')
+    #print lemmatize('fly flies married marrying woman women man men corpus corpora scenario scenarii porcine species')
+    #print pos_tagging('The big blue eyes of the girl are nice') 
+    s1 = 'black water marsh'
+    s2 = 'water black marsh'
+    s4 = 'marsh'
+    s3 = 'black marsh'
+    s5 = 'mud of the black marsh'
+    print bow_jac_dist(s1,s2)
+    print bow_jac_dist(s1,s3)
+    l = (s1,s2,s3)
+    print closest_in_list(s4, l)
+    print '########################'
+    blacklist = set(('marsh',))
+    print get_new_head(s1, 'marsh', blacklist)
+    print get_new_head(s5, 'mud', blacklist)
