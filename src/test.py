@@ -14,56 +14,71 @@ discarded = dict()
 reasons = dict()
 blacklist = set()
 orphans = dict()
+closest = dict()
 
 
 def save(prefix):
+    # head lemma
+    fd = open(prefix + '_term_lemma.csv', 'wb')
+    fd.write('term\tlemma\n')
+    for k,v in sorted(language.lemma.items()):
+        fd.write('%s\t%s\n' % (k, v))
+    fd.close()
+
     # head terms
     fd = open(prefix + '_head_terms.csv', 'wb')
-    fd.write('head;terms\n')
+    fd.write('head\tterms\n')
     for k,v in sorted(heads.items()):
-        fd.write('%s;%s\n' % (k, '|'.join(v)))
+        fd.write('%s\t%s\n' % (k, '|'.join(v)))
     fd.close()
 
     # terms
     fd = open(prefix + '_terms.csv', 'wb')
-    fd.write('name;term_info\n')
+    fd.write('name\tterm_info\n')
     for k,v in sorted(terms.items()):
-        fd.write('%s;%s\n' % (k, v))
+        fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # terms
     fd = open(prefix + '_rejected_during_learning.csv', 'wb')
-    fd.write('name;head\n')
+    fd.write('name\thead\n')
     for k,v in sorted(orphans.items()):
-        fd.write('%s;%s\n' % (k, v))
+        fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # terms tagged
     fd = open(prefix + '_terms_tagged.csv', 'wb')
-    fd.write('name;types\n')
+    fd.write('name\ttypes\n')
     for k,v in sorted(tagged.items()):
-        fd.write('%s;%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v)))
+        fd.write('%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v)))
+    fd.close()
+
+    # terms tagged + other info
+    fd = open(prefix + '_terms_tagged_full.csv', 'wb')
+    fd.write('name\ttypes\tclosest\tancestors\n')
+    for k,v in sorted(tagged.items()):
+        fd.write('%s\t%s\t%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v), closest[k], '|'.join(terms[closest[k]].ancestors())))
     fd.close()
 
     # terms not tagged
     fd = open(prefix + '_terms_not_tagged.csv', 'wb')
-    fd.write('name;head\n')
+    fd.write('name\thead\n')
     for k,v in sorted(discarded.items()):
-        fd.write('%s;%s\n' % (k, v))
+        fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # tagging explained
     fd = open(prefix + '_tagging_explained.csv', 'wb')
-    fd.write('name;reason\n')
+    fd.write('name\treason\n')
     for k,v in sorted(reasons.items()):
-        fd.write('%s;%s\n' % (k, v))
+        fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # ancestors explained
     fd = open(prefix + '_ancestors_explained.csv', 'wb')
-    fd.write('name;ancestors\n')
+    fd.write('name\tancestors\n')
     for k,v in sorted(terms.items()):
-        fd.write('%s;%s\n' % (k, '|'.join(v.ancestors())))
+        fd.write('%s\t%s\n' % (k, '|'.join(v.ancestors())))
     fd.close()
 
 def save_sim(prefix):
@@ -135,6 +150,8 @@ def subsets_by_head(_t, head):
     res = dict()
     if head in heads:
         trust = language.trust(_t, heads[head])
+        if trust:
+            closest[_t] = max((v,k) for k,v in trust.items())[1]
         for t in heads[head]:
             for s in terms[t].subsets():
                 res[s] = res.get(s, 0) + trust[t]
@@ -150,6 +167,7 @@ def tag(t, head=None):
         head = language.lemmatize(language.real_head(t, head, blacklist))
     res = None
     if t in terms:
+        closest[t] = t
         res = set(i for i in terms[t].subsets())
         if not res:
             discarded[t] = head
@@ -160,8 +178,8 @@ def tag(t, head=None):
 
     elif head:
         # Comment the next 2 lines if you don't want any special treatment of terms with 'of'
-        if head not in heads:
-            head = language.get_new_head(t, head, blacklist)
+        #if head not in heads:
+        #    head = language.get_new_head(t, head, blacklist)
         if head in heads:
             res = subsets_by_head(t, head)
             if not res:
@@ -212,13 +230,12 @@ class Term(object):
     def __init__(self, name, **kwargs):
         self.name = language.lemmatize(name)
         kwargs = onto_utils.clean_dict(kwargs)
-        if '_subsets' in kwargs:
-            kwargs['_subsets'] = set(p.lower().replace('_','') for p in kwargs['_subsets'])
         if 'parents' in kwargs:
             kwargs['parents'] = set(language.lemmatize(p) for p in kwargs['parents'])
         self.__dict__.update(kwargs)
         if 'head' in kwargs:
-            self.head = language.lemmatize(language.real_head(self.name, self.head, blacklist))
+            #self.head = language.lemmatize(language.real_head(self.name, self.head, blacklist))
+            self.head = language.lemmatize(self.head)
             heads.setdefault(self.head, set()).add(self.name)
         if 'synonyms' in kwargs:
             self.synonyms = set(language.lemmatize(s) for s in self.synonyms)
