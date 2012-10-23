@@ -7,7 +7,7 @@ def read_blacklist(fd):
 
 # Action is 'learn' or 'tag'
 def read_heads(fd, action):
-    s = set((term.strip(), head.strip()) for term,head in (line.split('\t') for line in fd if not line.startswith('#')))
+    s = set((term.strip(), ' '.join(head.strip().split('_'))) for term,head in (line.split(';') for line in fd if not line.startswith('#')))
     # We want to add the terms to the knowledge base
     if action == 'learn':
         for term, head in s:
@@ -16,7 +16,7 @@ def read_heads(fd, action):
             #if candidate == term or not candidate:
             if language.lemmatize(term) in test.terms:
                 test.Term(name=term, head=head)
-            # It's a new term and needs to be inserted somewhere (to be improved)
+            # It's a new term and needs to be inserted some where (to be improved)
             else:
                 test.orphans[term] = head
                 #test.Term(name=term, head=head, parents=set((candidate,)))
@@ -29,12 +29,9 @@ def read_heads(fd, action):
 
 
 def read_types(fd):
-    s = set((term.strip(), _type.strip()) for term, _type in (line.split('\t') for line in fd if not line.startswith('#')))
+    s = set((term.strip(), _type.strip()) for _type, term in (line.split(';') for line in fd if not line.startswith('#')))
     for term, _type in s:
         test.Term(name=term, _subsets=set((_type,)))
-
-def read_lemma(fd):
-    language.lemma.update(dict((term.strip(), language.lemmatize2(lemma.strip())) for term, lemma in (line.split('\t') for line in fd if not line.startswith('#'))))
 
 def fusion_dict(d1, d2):
     if not d1:
@@ -59,10 +56,6 @@ def fusion_dict(d1, d2):
                 res[k] = set((d1[k], d2[k]))
         else:
             print "WARNING", type(d1[k]), type(d2[k])
-            print d1
-            print d2
-            import sys
-            sys.exit(1)
     return res
 
 def clean_dict(d):

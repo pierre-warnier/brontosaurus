@@ -2,17 +2,13 @@ from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag, word_tokenize
 
 lemmatizer = WordNetLemmatizer()
-def lemmatize2(s):
+def lemmatize(s):
     if s:
-        # One way
-        # return " ".join(lemmatizer.lemmatize(w) for w in word_tokenize(s)).lower()
-        # An other
-        return " ".join(lemmatizer.lemmatize(w.lower()) for w in word_tokenize(s))
+        return " ".join(lemmatizer.lemmatize(w) for w in word_tokenize(s)).lower()
     return ''
 
-lemma = dict()
-def lemmatize(s):
-    return lemma.get(s,s)
+def pos_tagging(s):
+    return pos_tag(word_tokenize(s))
 
 def jaccard(s1, s2):
     try:

@@ -1,7 +1,10 @@
 import sys
 
+import param
 import onto_utils
 import language
+
+import numpy as np
 
 
 terms = dict()
@@ -11,78 +14,127 @@ discarded = dict()
 reasons = dict()
 blacklist = set()
 orphans = dict()
-closest = dict()
+
 
 def save(prefix):
-    # head lemma
-    fd = open(prefix + '_term_lemma.csv', 'wb')
-    fd.write('term\tlemma\n')
-    for k,v in sorted(language.lemma.items()):
-        fd.write('%s\t%s\n' % (k, v))
-    fd.close()
-
     # head terms
     fd = open(prefix + '_head_terms.csv', 'wb')
-    fd.write('head\tterms\n')
+    fd.write('head;terms\n')
     for k,v in sorted(heads.items()):
-        fd.write('%s\t%s\n' % (k, '|'.join(v)))
+        fd.write('%s;%s\n' % (k, '|'.join(v)))
     fd.close()
 
     # terms
     fd = open(prefix + '_terms.csv', 'wb')
-    fd.write('name\tterm_info\n')
+    fd.write('name;term_info\n')
     for k,v in sorted(terms.items()):
-        fd.write('%s\t%s\n' % (k, v))
+        fd.write('%s;%s\n' % (k, v))
     fd.close()
 
     # terms
     fd = open(prefix + '_rejected_during_learning.csv', 'wb')
-    fd.write('name\thead\n')
+    fd.write('name;head\n')
     for k,v in sorted(orphans.items()):
-        fd.write('%s\t%s\n' % (k, v))
+        fd.write('%s;%s\n' % (k, v))
     fd.close()
 
     # terms tagged
     fd = open(prefix + '_terms_tagged.csv', 'wb')
-    fd.write('name\ttypes\n')
+    fd.write('name;types\n')
     for k,v in sorted(tagged.items()):
-        fd.write('%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v)))
-    fd.close()
-
-    # terms tagged + other info
-    fd = open(prefix + '_terms_tagged_full.csv', 'wb')
-    fd.write('name\ttypes\tclosest\tancestors\n')
-    for k,v in sorted(tagged.items()):
-        fd.write('%s\t%s\t%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v), closest[k], '|'.join(terms[closest[k]].ancestors())))
+        fd.write('%s;%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v)))
     fd.close()
 
     # terms not tagged
     fd = open(prefix + '_terms_not_tagged.csv', 'wb')
-    fd.write('name\thead\n')
+    fd.write('name;head\n')
     for k,v in sorted(discarded.items()):
-        fd.write('%s\t%s\n' % (k, v))
+        fd.write('%s;%s\n' % (k, v))
     fd.close()
 
     # tagging explained
     fd = open(prefix + '_tagging_explained.csv', 'wb')
-    fd.write('name\treason\n')
+    fd.write('name;reason\n')
     for k,v in sorted(reasons.items()):
-        fd.write('%s\t%s\n' % (k, v))
+        fd.write('%s;%s\n' % (k, v))
     fd.close()
 
     # ancestors explained
     fd = open(prefix + '_ancestors_explained.csv', 'wb')
-    fd.write('name\tancestors\n')
+    fd.write('name;ancestors\n')
     for k,v in sorted(terms.items()):
-        fd.write('%s\t%s\n' % (k, '|'.join(v.ancestors())))
+        fd.write('%s;%s\n' % (k, '|'.join(v.ancestors())))
     fd.close()
+
+def save_sim(prefix):
+    # similarity matrix (WANG 2007)
+    t = sorted(terms.items())
+    l = list()
+    for i in xrange(len(t)):
+        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (t[i][1].sim_wang(t[j][1]) for j in xrange(len(t)))) + '\n')
+    fd = open(prefix + '_sim_wang.csv', 'wb')
+    fd.writelines(l)
+    fd.close()
+
+    # similarity matrix jaccard subsets
+    t = sorted(terms.items())
+    l = list()
+    for i in xrange(len(t)):
+        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (t[i][1].sim_subsets(t[j][1]) for j in xrange(len(t)))) + '\n')
+    fd = open(prefix + '_sim_subsets.csv', 'wb')
+    fd.writelines(l)
+    fd.close()
+
+    # similarity matrix WANG * jaccard subsets
+    t = sorted(terms.items())
+    l = list()
+    for i in xrange(len(t)):
+        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (t[i][1].sim_subsets(t[j][1]) * t[i][1].sim_wang(t[j][1]) for j in xrange(len(t)))) + '\n')
+    fd = open(prefix + '_sim_wang_times_subsets.csv', 'wb')
+    fd.writelines(l)
+    fd.close()
+
+    # similarity matrix WANG fusion jaccard subsets
+    t = sorted(terms.items())
+    l = list()
+    for i in xrange(len(t)):
+        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (t[i][1].sim_wang_subsets(t[j][1]) for j in xrange(len(t)))) + '\n')
+    fd = open(prefix + '_sim_wang_fusion_subsets.csv', 'wb')
+    fd.writelines(l)
+    fd.close()
+
+    # sim mat reduced to heads (set sim WANG 2007)
+    t = sorted(heads.items())
+    l = list()
+    for i in xrange(len(t)):
+        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (
+            sim_sets_wang_subsets(set(terms[ti] for ti in t[i][1]), set(terms[tj] for tj in t[j][1]))
+            for j in xrange(len(t)))) + '\n')
+    fd = open(prefix + '_sim_heads_wang_fusion_subsets.csv', 'wb')
+    fd.writelines(l)
+    fd.close()
+
+    # sim mat reduced to heads (set sim WANG 2007)
+    t = sorted(heads.items())
+    l = list()
+    for i in xrange(len(t)):
+        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (
+            sim_sets_wang(set(terms[ti] for ti in t[i][1]), set(terms[tj] for tj in t[j][1]))
+            for j in xrange(len(t)))) + '\n')
+    fd = open(prefix + '_sim_heads_wang.csv', 'wb')
+    fd.writelines(l)
+    fd.close()
+
+def sim_sets_wang_subsets(s1, s2):
+    return (sum(t1.sim_set_wang_subsets(s2) for t1 in s1) + sum(t2.sim_set_wang_subsets(s1) for t2 in s2)) / (len(s1) + len(s2))
+
+def sim_sets_wang(s1, s2):
+    return (sum(t1.sim_set_wang(s2) for t1 in s1) + sum(t2.sim_set_wang(s1) for t2 in s2)) / (len(s1) + len(s2))
 
 def subsets_by_head(_t, head):
     res = dict()
     if head in heads:
         trust = language.trust(_t, heads[head])
-        if trust:
-            closest[_t] = max((v,k) for k,v in trust.items())[1]
         for t in heads[head]:
             for s in terms[t].subsets():
                 res[s] = res.get(s, 0) + trust[t]
@@ -98,7 +150,6 @@ def tag(t, head=None):
         head = language.lemmatize(language.real_head(t, head, blacklist))
     res = None
     if t in terms:
-        closest[t] = t
         res = set(i for i in terms[t].subsets())
         if not res:
             discarded[t] = head
@@ -109,8 +160,8 @@ def tag(t, head=None):
 
     elif head:
         # Comment the next 2 lines if you don't want any special treatment of terms with 'of'
-        #if head not in heads:
-        #    head = language.get_new_head(t, head, blacklist)
+        if head not in heads:
+            head = language.get_new_head(t, head, blacklist)
         if head in heads:
             res = subsets_by_head(t, head)
             if not res:
@@ -161,12 +212,13 @@ class Term(object):
     def __init__(self, name, **kwargs):
         self.name = language.lemmatize(name)
         kwargs = onto_utils.clean_dict(kwargs)
+        if '_subsets' in kwargs:
+            kwargs['_subsets'] = set(p.lower().replace('_','') for p in kwargs['_subsets'])
         if 'parents' in kwargs:
             kwargs['parents'] = set(language.lemmatize(p) for p in kwargs['parents'])
         self.__dict__.update(kwargs)
         if 'head' in kwargs:
-            #self.head = language.lemmatize(language.real_head(self.name, self.head, blacklist))
-            self.head = language.lemmatize(self.head)
+            self.head = language.lemmatize(language.real_head(self.name, self.head, blacklist))
             heads.setdefault(self.head, set()).add(self.name)
         if 'synonyms' in kwargs:
             self.synonyms = set(language.lemmatize(s) for s in self.synonyms)
@@ -189,6 +241,97 @@ class Term(object):
                     for a in terms[p].ancestors():
                         yield a
 
+    def s_wang(self):
+        if not hasattr(self, '_s_wang'):
+            self._s_wang = [(self.name, 1.),] + list(onto_utils.max_val(self.__s_wang()))
+        return self._s_wang
+
+    def __s_wang(self, score=1.):
+        '''Scores of ancestors'''
+        if hasattr(self, 'parents'):
+            for p in self.parents:
+                if p in terms:
+                    pscore = is_a_coeff=param.is_a_coeff * score
+                    yield p, pscore
+                    for a,s in terms[p].__s_wang(pscore):
+                        yield a,s
+
+    def s_subsets(self):
+        if not hasattr(self, '_s_subsets'):
+            self._s_subsets = tuple((a, self.sim_subsets(terms[a])) for a in [self.name] + list(onto_utils.unique(self.ancestors())))
+        return self._s_subsets
+
+    def s_wang_subsets(self):
+        if not hasattr(self, '_s_wang_subsets'):
+            d_wang = dict(self.s_wang())
+            d_subsets = dict(self.s_subsets())
+            self._s_wang_subsets = list()
+            for k in d_wang:
+                self._s_wang_subsets.append((k, d_wang[k] * d_subsets[k]))
+        return self._s_wang_subsets
+
+    def sv_wang(self):
+        '''Score of the term itself'''
+        return sum(s for a,s in self.s_wang())
+
+    def sv_wang_subsets(self):
+        '''Score of the term itself'''
+        return sum(s for a,s in self.s_wang_subsets())
+
+    def sim_wang(self, t):
+        if not hasattr(self, '_sim_wang'):
+            self._sim_wang = dict()
+        if not hasattr(t, '_sim_wang'):
+            t._sim_wang = dict()
+        if t.name not in self._sim_wang:
+            a_self, a_t = set(self.ancestors()), set(t.ancestors())
+            a_self.add(self.name)
+            a_t.add(t.name)
+            inter = a_self.intersection(a_t)
+            s_self, s_t = dict(self.s_wang()), dict(t.s_wang())
+            r = sum(s_self[i] + s_t[i] for i in inter) / (self.sv_wang() + t.sv_wang())
+            self._sim_wang[t.name] = r
+            t._sim_wang[self.name] = r
+        return self._sim_wang[t.name]
+
+    def sim_subsets(self, t):
+        if not hasattr(self, '_sim_subsets'):
+            self._sim_subsets = dict()
+        if not hasattr(t, '_sim_subsets'):
+            t._sim_subsets = dict()
+        if t.name not in self._sim_subsets:
+            r = language.jaccard(set(self.subsets()), set(t.subsets()))
+            self._sim_subsets[t.name] = r
+            t._sim_subsets[self.name] = r
+        return self._sim_subsets[t.name]
+
+    def sim_wang_subsets(self, t):
+        if not hasattr(self, '_sim_wang_subsets'):
+            self._sim_wang_subsets = dict()
+        if not hasattr(t, '_sim_wang_subsets'):
+            t._sim_wang_subsets = dict()
+        if t.name not in self._sim_wang_subsets:
+            a_self, a_t = set(self.ancestors()), set(t.ancestors())
+            a_self.add(self.name)
+            a_t.add(t.name)
+            inter = a_self.intersection(a_t)
+            s_self, s_t = dict(self.s_wang_subsets()), dict(t.s_wang_subsets())
+            try:
+                r = sum(s_self[i] + s_t[i] for i in inter) / (self.sv_wang_subsets() + t.sv_wang_subsets())
+            except ZeroDivisionError:
+                r = 0
+            self._sim_wang_subsets[t.name] = r
+            t._sim_wang_subsets[self.name] = r
+        return self._sim_wang_subsets[t.name]
+
+    def sim_set_wang_subsets(self, s, fusion_func=np.mean):
+        '''sim with a whole set'''
+        return fusion_func(self.sim_wang_subsets(t) for t in s)
+
+    def sim_set_wang(self, s, fusion_func=np.mean):
+        '''sim with a whole set'''
+        return fusion_func(self.sim_wang(t) for t in s)
+
     def subsets(self):
         if hasattr(self, '_subsets'):
             for subset in self._subsets:
@@ -199,7 +342,6 @@ class Term(object):
                     if p in terms:
                         for s in terms[p].subsets():
                             yield s
-    
     
     def __repr__(self):
         return "|".join("%s:%s" %(k,v) for k,v in sorted(self.__dict__.iteritems()))
