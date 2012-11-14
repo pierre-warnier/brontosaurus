@@ -58,11 +58,13 @@ def save(prefix):
     fd.write('name\ttypes\tclosest\tancestors\n')
     for k,v in sorted(tagged.items()):
         conceptk = closest[k]
+        tmp = conceptk.copy()
         for c in conceptk:
             if hasattr(terms[c], 'synonym_of'):
-                conceptk.pop(c)
-                conceptk.add(terms[c].synonym_of)
-        fd.write('%s\t%s\t%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v), '|'.join(conceptk), ))
+                tmp.remove(c)
+                for s in terms[c].synonym_of:
+                    tmp.add(s)
+        fd.write('%s\t%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v), '|'.join(tmp), ))
     fd.close()
 
     # terms not tagged
@@ -172,7 +174,9 @@ def tag(t, head=None):
         head = language.lemmatize(language.real_head(t, head, blacklist))
     res = None
     if t in terms:
-        closest[t] = set((t), )
+        closest[t] = set()
+        closest[t].add(t)
+
         res = set(i for i in terms[t].subsets())
         if not res:
             discarded[t] = head
@@ -237,7 +241,8 @@ class Term(object):
             self.synonyms = set(language.lemmatize(s) for s in self.synonyms)
             kwargs.pop('synonyms')
             for s in self.synonyms:
-                kwargs['synonym_of'] = name
+                kwargs['synonym_of'] = set()
+                kwargs['synonym_of'].add(name)
                 Term(name=s, **kwargs)
         if self.name in terms:
             terms[self.name].fusion(self)
