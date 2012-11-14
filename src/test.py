@@ -172,7 +172,7 @@ def tag(t, head=None):
         head = language.lemmatize(language.real_head(t, head, blacklist))
     res = None
     if t in terms:
-        closest[t] = set(t, )
+        closest[t] = set((t), )
         res = set(i for i in terms[t].subsets())
         if not res:
             discarded[t] = head
