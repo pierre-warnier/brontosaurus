@@ -59,9 +59,9 @@ def save(prefix):
     for k,v in sorted(tagged.items()):
         conceptk = closest[k]
         for c in conceptk:
-            if hasattr(terms[closest[k]], 'synonym_of'):
+            if hasattr(terms[c], 'synonym_of'):
                 conceptk.pop(c)
-                conceptk.add(terms[closest[k]].synonym_of)
+                conceptk.add(terms[c].synonym_of)
         fd.write('%s\t%s\t%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v), '|'.join(conceptk), ))
     fd.close()
 
