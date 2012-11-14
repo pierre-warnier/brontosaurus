@@ -57,7 +57,12 @@ def save(prefix):
     fd = open(prefix + '_terms_tagged_full.csv', 'wb')
     fd.write('name\ttypes\tclosest\tancestors\n')
     for k,v in sorted(tagged.items()):
-        fd.write('%s\t%s\t%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v), closest[k], '|'.join(terms[closest[k]].ancestors())))
+        conceptk = closest[k]
+        for c in conceptk:
+            if hasattr(terms[closest[k]], 'synonym_of'):
+                conceptk.pop(c)
+                conceptk.add(terms[closest[k]].synonym_of)
+        fd.write('%s\t%s\t%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v), '|'.join(conceptk), ))
     fd.close()
 
     # terms not tagged
@@ -151,7 +156,7 @@ def subsets_by_head(_t, head):
     if head in heads:
         trust = language.trust(_t, heads[head])
         if trust:
-            closest[_t] = max((v,k) for k,v in trust.items())[1]
+            closest[_t] = onto_utils.max_val_tie((v,k) for k,v in trust.items())
         for t in heads[head]:
             for s in terms[t].subsets():
                 res[s] = res.get(s, 0) + trust[t]
@@ -167,7 +172,7 @@ def tag(t, head=None):
         head = language.lemmatize(language.real_head(t, head, blacklist))
     res = None
     if t in terms:
-        closest[t] = t
+        closest[t] = set(t, )
         res = set(i for i in terms[t].subsets())
         if not res:
             discarded[t] = head
@@ -193,15 +198,6 @@ def tag(t, head=None):
     else:
         discarded[t] = head
         reasons[t] = 'Term and head unknown: %s, %s' %(t, head)
-
-def closest_term(t, head=None):
-    t = language.lemmatize(t)
-    if t in terms:
-        return t
-    if not head:
-        head = language.get_head(t)
-    if head in heads:
-        return language.closest_in_list(t, heads[head])
 
 def cleaning_helper():
     for k,v in terms.iteritems():
@@ -241,6 +237,7 @@ class Term(object):
             self.synonyms = set(language.lemmatize(s) for s in self.synonyms)
             kwargs.pop('synonyms')
             for s in self.synonyms:
+                kwargs['synonym_of'] = name
                 Term(name=s, **kwargs)
         if self.name in terms:
             terms[self.name].fusion(self)

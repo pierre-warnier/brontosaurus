@@ -42,11 +42,6 @@ def get_new_head(s, head, blacklist=None):
             return l[-1]
     return head
 
-def closest_in_list(t, l):
-    score, candidate = max((bow_jac_dist(t, c), c) for c in l) 
-    if score > 0:
-        return candidate
-
 def trust(t, l):
     return dict((c, bow_jac_dist(t, c)) for c in l) 
 
@@ -63,7 +58,6 @@ if __name__ == "__main__":
     print bow_jac_dist(s1,s2)
     print bow_jac_dist(s1,s3)
     l = (s1,s2,s3)
-    print closest_in_list(s4, l)
     print '########################'
     blacklist = set(('marsh',))
     print get_new_head(s1, 'marsh', blacklist)

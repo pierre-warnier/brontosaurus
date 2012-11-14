@@ -11,9 +11,6 @@ def read_heads(fd, action):
     # We want to add the terms to the knowledge base
     if action == 'learn':
         for term, head in s:
-            #candidate = test.closest_term(term, head)
-            # It's an update
-            #if candidate == term or not candidate:
             if language.lemmatize(term) in test.terms:
                 test.Term(name=term, head=head)
             # It's a new term and needs to be inserted somewhere (to be improved)
@@ -88,6 +85,11 @@ def max_val(it):
     cache = mv_dict(t)
     for k in unique(k for k,v in t):
         yield k, max(cache[k]) 
+
+def max_val_tie(it):
+    '''it: ((k,v),(k,v),...)'''
+    cache = mv_dict(set(it))
+    return set(cache[max(cache)])
 
 if __name__ == '__main__':
     #d1 = {'name':'vegetable', 'parents':set(['plant-derived food']), 'synonyms':set(['legume'])}
