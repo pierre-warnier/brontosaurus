@@ -1,4 +1,5 @@
 import sys
+import codecs
 
 import param
 import onto_utils
@@ -18,43 +19,50 @@ closest = dict()
 
 
 def save(prefix):
+    "Dumps the memory content"
     # head lemma
-    fd = open(prefix + '_term_lemma.csv', 'wb')
+    fd = codecs.open(prefix + u'_term_lemma.csv', 'wb', 'UTF-8')
     fd.write('term\tlemma\n')
     for k,v in sorted(language.lemma.items()):
         fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # head terms
-    fd = open(prefix + '_head_terms.csv', 'wb')
+    fd = codecs.open(prefix + u'_head_terms.csv', 'wb', 'UTF-8')
     fd.write('head\tterms\n')
     for k,v in sorted(heads.items()):
         fd.write('%s\t%s\n' % (k, '|'.join(v)))
     fd.close()
 
     # terms
-    fd = open(prefix + '_terms.csv', 'wb')
+    fd = codecs.open(prefix + u'_terms.csv', 'wb', 'UTF-8')
     fd.write('name\tterm_info\n')
     for k,v in sorted(terms.items()):
         fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # terms
-    fd = open(prefix + '_rejected_during_learning.csv', 'wb')
+    fd = codecs.open(prefix + u'_rejected_during_learning.csv', 'wb', 'UTF-8')
     fd.write('name\thead\n')
     for k,v in sorted(orphans.items()):
         fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # terms tagged
-    fd = open(prefix + '_terms_tagged.csv', 'wb')
+    fd = codecs.open(prefix + u'_terms_tagged.csv', 'wb', 'UTF-8')
     fd.write('name\ttypes\n')
     for k,v in sorted(tagged.items()):
-        fd.write('%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v)))
+        l = list()
+        for i in v:
+            if isinstance(i, str):
+                l.append(i)
+            else:
+                l.append(i[1])
+        fd.write('%s\t%s\n' % (k, '|'.join(l)))
     fd.close()
 
     # terms tagged + other info
-    fd = open(prefix + '_terms_tagged_full.csv', 'wb')
+    fd = codecs.open(prefix + u'_terms_tagged_full.csv', 'wb', 'UTF-8')
     fd.write('name\ttypes\tclosest\tancestors\n')
     for k,v in sorted(tagged.items()):
         conceptk = closest[k]
@@ -64,37 +72,44 @@ def save(prefix):
                 tmp.remove(c)
                 for s in terms[c].synonym_of:
                     tmp.add(s)
-        fd.write('%s\t%s\t%s\n' % (k, '|'.join((i if isinstance(i, str) else i[1]) for i in v), '|'.join(tmp), ))
+        l = list()
+        for i in v:
+            if isinstance(i, str):
+                l.append(i)
+            else:
+                l.append(i[1])
+        fd.write('%s\t%s\t%s\n' % (k, '|'.join(l), '|'.join(tmp), ))
     fd.close()
 
     # terms not tagged
-    fd = open(prefix + '_terms_not_tagged.csv', 'wb')
+    fd = codecs.open(prefix + u'_terms_not_tagged.csv', 'wb', 'UTF-8')
     fd.write('name\thead\n')
     for k,v in sorted(discarded.items()):
         fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # tagging explained
-    fd = open(prefix + '_tagging_explained.csv', 'wb')
+    fd = codecs.open(prefix + u'_tagging_explained.csv', 'wb', 'UTF-8')
     fd.write('name\treason\n')
     for k,v in sorted(reasons.items()):
         fd.write('%s\t%s\n' % (k, v))
     fd.close()
 
     # ancestors explained
-    fd = open(prefix + '_ancestors_explained.csv', 'wb')
+    fd = codecs.open(prefix + u'_ancestors_explained.csv', 'wb', 'UTF-8')
     fd.write('name\tancestors\n')
     for k,v in sorted(terms.items()):
         fd.write('%s\t%s\n' % (k, '|'.join(v.ancestors())))
     fd.close()
 
 def save_sim(prefix):
+    "Saves node similarity matrices"
     # similarity matrix (WANG 2007)
     t = sorted(terms.items())
     l = list()
     for i in xrange(len(t)):
-        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (t[i][1].sim_wang(t[j][1]) for j in xrange(len(t)))) + '\n')
-    fd = open(prefix + '_sim_wang.csv', 'wb')
+        l.append('%s\t' % t[i][0] + u'\t'.join('%2.3f' % s for s in (t[i][1].sim_wang(t[j][1]) for j in xrange(len(t)))) + u'\n')
+    fd = codecs.open(prefix + u'_sim_wang.csv', 'wb', 'UTF-8')
     fd.writelines(l)
     fd.close()
 
@@ -102,8 +117,8 @@ def save_sim(prefix):
     t = sorted(terms.items())
     l = list()
     for i in xrange(len(t)):
-        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (t[i][1].sim_subsets(t[j][1]) for j in xrange(len(t)))) + '\n')
-    fd = open(prefix + '_sim_subsets.csv', 'wb')
+        l.append('%s\t' % t[i][0] + u'\t'.join('%2.3f' % s for s in (t[i][1].sim_subsets(t[j][1]) for j in xrange(len(t)))) + u'\n')
+    fd = codecs.open(prefix + u'_sim_subsets.csv', 'wb', 'UTF-8')
     fd.writelines(l)
     fd.close()
 
@@ -111,8 +126,8 @@ def save_sim(prefix):
     t = sorted(terms.items())
     l = list()
     for i in xrange(len(t)):
-        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (t[i][1].sim_subsets(t[j][1]) * t[i][1].sim_wang(t[j][1]) for j in xrange(len(t)))) + '\n')
-    fd = open(prefix + '_sim_wang_times_subsets.csv', 'wb')
+        l.append('%s\t' % t[i][0] + u'\t'.join('%2.3f' % s for s in (t[i][1].sim_subsets(t[j][1]) * t[i][1].sim_wang(t[j][1]) for j in xrange(len(t)))) + u'\n')
+    fd = codecs.open(prefix + u'_sim_wang_times_subsets.csv', 'wb', 'UTF-8')
     fd.writelines(l)
     fd.close()
 
@@ -120,8 +135,8 @@ def save_sim(prefix):
     t = sorted(terms.items())
     l = list()
     for i in xrange(len(t)):
-        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (t[i][1].sim_wang_subsets(t[j][1]) for j in xrange(len(t)))) + '\n')
-    fd = open(prefix + '_sim_wang_fusion_subsets.csv', 'wb')
+        l.append('%s\t' % t[i][0] + u'\t'.join('%2.3f' % s for s in (t[i][1].sim_wang_subsets(t[j][1]) for j in xrange(len(t)))) + u'\n')
+    fd = codecs.open(prefix + u'_sim_wang_fusion_subsets.csv', 'wb', 'UTF-8')
     fd.writelines(l)
     fd.close()
 
@@ -129,10 +144,10 @@ def save_sim(prefix):
     t = sorted(heads.items())
     l = list()
     for i in xrange(len(t)):
-        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (
+        l.append('%s\t' % t[i][0] + u'\t'.join('%2.3f' % s for s in (
             sim_sets_wang_subsets(set(terms[ti] for ti in t[i][1]), set(terms[tj] for tj in t[j][1]))
-            for j in xrange(len(t)))) + '\n')
-    fd = open(prefix + '_sim_heads_wang_fusion_subsets.csv', 'wb')
+            for j in xrange(len(t)))) + u'\n')
+    fd = codecs.open(prefix + u'_sim_heads_wang_fusion_subsets.csv', 'wb', 'UTF-8')
     fd.writelines(l)
     fd.close()
 
@@ -140,10 +155,10 @@ def save_sim(prefix):
     t = sorted(heads.items())
     l = list()
     for i in xrange(len(t)):
-        l.append('%s\t' % t[i][0] + '\t'.join('%2.3f' % s for s in (
+        l.append('%s\t' % t[i][0] + u'\t'.join('%2.3f' % s for s in (
             sim_sets_wang(set(terms[ti] for ti in t[i][1]), set(terms[tj] for tj in t[j][1]))
-            for j in xrange(len(t)))) + '\n')
-    fd = open(prefix + '_sim_heads_wang.csv', 'wb')
+            for j in xrange(len(t)))) + u'\n')
+    fd = codecs.open(prefix + u'_sim_heads_wang.csv', 'wb', 'UTF-8')
     fd.writelines(l)
     fd.close()
 
@@ -156,6 +171,7 @@ def sim_sets_wang(s1, s2):
 def subsets_by_head(_t, head):
     res = dict()
     if head in heads:
+        # Change here for disambiguation with distributional semantics
         trust = language.trust(_t, heads[head])
         if trust:
             closest[_t] = onto_utils.max_val_tie((v,k) for k,v in trust.items())
@@ -169,6 +185,7 @@ def subsets_by_head(_t, head):
     return tuple()
 
 def tag(t, head=None):
+    "Tries to determine the type of a term."
     t = language.lemmatize(t)
     if head:
         head = language.lemmatize(language.real_head(t, head, blacklist))
@@ -204,6 +221,7 @@ def tag(t, head=None):
         reasons[t] = 'Term and head unknown: %s, %s' %(t, head)
 
 def cleaning_helper():
+    "A helper function that detects obvious flows in the ontology."
     for k,v in terms.iteritems():
         if hasattr(v, 'parents'):
             # self loops

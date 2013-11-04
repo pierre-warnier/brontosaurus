@@ -1,3 +1,5 @@
+import codecs
+
 import language
 import test
 import collections
@@ -31,7 +33,8 @@ def read_types(fd):
         test.Term(name=term, _subsets=set((_type,)))
 
 def read_lemma(fd):
-    language.lemma.update(dict((term.strip(), language.lemmatize2(lemma.strip())) for term, lemma in (line.split('\t') for line in fd if not line.startswith('#'))))
+    #language.lemma.update(dict((term.strip(), language.lemmatize2(lemma.strip())) for term, lemma in (line.split('\t') for line in fd if not line.startswith('#'))))
+    language.lemma.update(dict((term.strip(), lemma.strip().lower()) for term, lemma in (line.split('\t') for line in fd if not line.startswith('#'))))
 
 def fusion_dict(d1, d2):
     if not d1:
@@ -49,7 +52,7 @@ def fusion_dict(d1, d2):
     for k in inter:
         if type(d1[k]) == type(d2[k]) == type(set()):
             res[k] = d1[k].union(d2[k])
-        elif type(d1[k]) == type(d2[k]) == type(''):
+        elif type(d1[k]) == type(d2[k]) == type(u''):
             if d1[k] == d2[k]:
                 res[k] = d1[k]
             else:
@@ -101,7 +104,7 @@ if __name__ == '__main__':
     #print d1
     #print d2
     #print fusion_dict(d1,d2)
-    read_blacklist(open('../data/blacklist.txt'))
+    read_blacklist(open('../data/blacklist.txt', encoding='UTF-8'))
     print test.blacklist
 
 

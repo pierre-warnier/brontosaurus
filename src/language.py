@@ -1,5 +1,5 @@
 from nltk.stem import WordNetLemmatizer
-from nltk import pos_tag, word_tokenize
+from nltk import word_tokenize
 
 lemmatizer = WordNetLemmatizer()
 def lemmatize2(s):
@@ -17,7 +17,6 @@ def lemmatize(s):
 def jaccard(s1, s2):
     try:
         return float(len(s1.intersection(s2))) / len(s1.union(s2))
-    #except ZeroDivisionError: return None
     except ZeroDivisionError: return 0.
 
 def bow_jac_dist(s1, s2):
