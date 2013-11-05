@@ -1,11 +1,11 @@
 import codecs
 
 import language
-import test
+import term
 import collections
 
 def read_blacklist(fd):
-    test.blacklist.update(set(language.lemmatize(line.strip()) for line in fd if not line.startswith('#')))
+    term.blacklist.update(set(language.lemmatize(line.strip()) for line in fd if not line.startswith('#')))
 
 # Action is 'learn' or 'tag'
 def read_heads(fd, action):
@@ -13,27 +13,25 @@ def read_heads(fd, action):
     # We want to add the terms to the knowledge base
     if action == 'learn':
         for term, head in s:
-            if language.lemmatize(term) in test.terms:
-                test.Term(name=term, head=head)
+            if language.lemmatize(term) in term.terms:
+                term.Term(name=term, head=head)
             # It's a new term and needs to be inserted somewhere (to be improved)
             else:
-                test.orphans[term] = head
-                #test.Term(name=term, head=head, parents=set((candidate,)))
+                term.orphans[term] = head
+                #term.Term(name=term, head=head, parents=set((candidate,)))
     # We just want to tag
     elif action == 'tag':
         for term, head in s:
-            test.tag(term, head)
+            term.tag(term, head)
     else:
         print "read_heads: Action unknown!"
-
 
 def read_types(fd):
     s = set((term.strip(), _type.strip()) for term, _type in (line.split('\t') for line in fd if not line.startswith('#')))
     for term, _type in s:
-        test.Term(name=term, _subsets=set((_type,)))
+        term.Term(name=term, _subsets=set((_type,)))
 
 def read_lemma(fd):
-    #language.lemma.update(dict((term.strip(), language.lemmatize2(lemma.strip())) for term, lemma in (line.split('\t') for line in fd if not line.startswith('#'))))
     language.lemma.update(dict((term.strip(), lemma.strip().lower()) for term, lemma in (line.split('\t') for line in fd if not line.startswith('#'))))
 
 def fusion_dict(d1, d2):
@@ -76,18 +74,11 @@ def unique(it):
     return (i for i in it if i not in seen and not seen.add(i))
 
 def mv_dict(it):
-    '''it: ((k,v),(k,v),...)'''
+    '''Multiple value dict. it: ((k,v),(k,v),...)'''
     res = dict()
     for k,v in it:
         res.setdefault(k, list()).append(v)
     return res
-
-def max_val(it):
-    '''it: ((k,v),(k,v),...)'''
-    t = tuple(it)
-    cache = mv_dict(t)
-    for k in unique(k for k,v in t):
-        yield k, max(cache[k]) 
 
 def max_val_tie(it):
     '''it: ((k,v),(k,v),...)'''
@@ -95,16 +86,4 @@ def max_val_tie(it):
     return set(cache[max(cache)])
 
 if __name__ == '__main__':
-    #d1 = {'name':'vegetable', 'parents':set(['plant-derived food']), 'synonyms':set(['legume'])}
-    #d2 = {'name':'vegetable', 'head':'vegetable'}
-    #print d1
-    #print d2
-    #d1 = clean_dict(d1)
-    #d2 = clean_dict(d2)
-    #print d1
-    #print d2
-    #print fusion_dict(d1,d2)
-    read_blacklist(open('../data/blacklist.txt', encoding='UTF-8'))
-    print test.blacklist
-
-
+    pass

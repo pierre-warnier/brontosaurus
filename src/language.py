@@ -1,29 +1,23 @@
-from nltk.stem import WordNetLemmatizer
 from nltk import word_tokenize
-
-lemmatizer = WordNetLemmatizer()
-def lemmatize2(s):
-    if s:
-        # One way
-        # return " ".join(lemmatizer.lemmatize(w) for w in word_tokenize(s)).lower()
-        # An other
-        return " ".join(lemmatizer.lemmatize(w.lower()) for w in word_tokenize(s))
-    return ''
 
 lemma = dict()
 def lemmatize(s):
+    "Lemma else surface form."
     return lemma.get(s,s)
 
 def jaccard(s1, s2):
+    "Jaccard distance between 2 sets."
     try:
         return float(len(s1.intersection(s2))) / len(s1.union(s2))
     except ZeroDivisionError: return 0.
 
 def bow_jac_dist(s1, s2):
+    "Bag of word jaccard distance between two muli-word concepts."
     set1, set2 = set(word_tokenize(s1)), set(word_tokenize(s2))
     return jaccard(set1, set2)
 
 def real_head(s, head, blacklist=None):
+    "Whenever the head is uninformative, find another one."
     if not blacklist:
         blacklist = set()
     if head in blacklist:
@@ -32,32 +26,10 @@ def real_head(s, head, blacklist=None):
             return l[-1]
     return head
 
-def get_new_head(s, head, blacklist=None):
-    if not blacklist:
-        blacklist = set()
-    if 'of' in s:
-        l = list(i for i in word_tokenize(s.partition(' of ')[-1]) if i not in blacklist and i != head)
-        if l:
-            return l[-1]
-    return head
-
 def trust(t, l):
+    "How close a term t is from the terms in l?"
     return dict((c, bow_jac_dist(t, c)) for c in l) 
 
 
 if __name__ == "__main__":
-    #print word_tokenize('fly flies married marrying woman women man men corpus corpora scenario scenarii')
-    #print lemmatize('fly flies married marrying woman women man men corpus corpora scenario scenarii porcine species')
-    #print pos_tagging('The big blue eyes of the girl are nice') 
-    s1 = 'black water marsh'
-    s2 = 'water black marsh'
-    s4 = 'marsh'
-    s3 = 'black marsh'
-    s5 = 'mud of the black marsh'
-    print bow_jac_dist(s1,s2)
-    print bow_jac_dist(s1,s3)
-    l = (s1,s2,s3)
-    print '########################'
-    blacklist = set(('marsh',))
-    print get_new_head(s1, 'marsh', blacklist)
-    print get_new_head(s5, 'mud', blacklist)
+    pass

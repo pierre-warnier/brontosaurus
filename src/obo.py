@@ -1,7 +1,6 @@
 import re
-import codecs
 
-import test
+import term
 
 re_term = re.compile('^\[Term\]$')
 re_name = re.compile('^name:\s(.+)')
@@ -12,7 +11,7 @@ re_is_obsolete = re.compile('^is_obsolete: true')
 re_is_a = re.compile('^is_a: .* ! (.+)')
     
 def read_terms(fd):
-    "Reads an obo file"
+    "Reads an obo file."
     for line in fd:
         if not line.startswith('#'):
             line = line.strip()
@@ -20,7 +19,7 @@ def read_terms(fd):
                 try:
                     if not is_obsolete:
                         # Here we create or update a term
-                        test.Term(name=name, parents=is_a, _subsets=subsets, synonyms=synonyms)
+                        term.Term(name=name, parents=is_a, _subsets=subsets, synonyms=synonyms)
                 except UnboundLocalError:
                     pass
                 name, subsets, is_a, synonyms = None, set(), set(), set()
