@@ -6,10 +6,10 @@ import sys
 import codecs
 
 import term
+
 from onto_utils import cleaning_helper
 from language import lemma
-from io import save, read_terms, read_heads, read_blacklist, read_types, \
-    read_lemma
+from io import save, read_terms, read_heads, read_blacklist, read_lemma
 
 ################################################################################
 # PARAMS
@@ -87,11 +87,6 @@ if FLAT_OK:
     print('LEARNING FLAT RESOURCES')
     print('-' * 80)
     ############################################################################
-
-    print("Reading flat resources types")
-    read_types(codecs.open(u'{0}types'.format(BASE_DATA), encoding='UTF-8'))
-    print('%d terms currently in memory.' % len(term.terms))
-    print()
 
     print("Reading flat resources heads")
     read_heads(codecs.open(u'{0}heads_tolearn_dico'.format(BASE_DATA),

@@ -15,68 +15,35 @@ orphans = dict()
 closest = dict()
 
 
-def subsets_by_head(_t, head):
-    """Finds all the subsets corresponding to a head.
+def closest_by_head(_t, head):
+    """Finds the closest term in the ontology.
     :param _t: a term which is a string
     :param head: its head word which is a string too
     """
-    res = dict()
     if head in heads:
         # Change here for disambiguation with distributional semantics
         trust = language.trust(_t, heads[head])
         if trust:
             closest[_t] = onto_utils.max_val_tie(
                 (v, k) for k, v in trust.items())
-        for t in heads[head]:
-            for s in terms[t].subsets:
-                res[s] = res.get(s, 0) + trust[t]
-    if res:
-        # XXX s may be zero so v/s -> div by zero
-        s = sum(res.values())
-        return tuple(
-            ("%.1f%%" % i, j) for i, j in
-            sorted(((float(v) / (s + 1) * 100, k) for k, v in res.items()),
-                   reverse=True))
-    return tuple()
+        return closest[_t]
 
 
 def tag(t, head=None):
     """Tries to determine the type of a term.
+    :type head: None
     :param t: a term which is  a string
     :param head: an optional head word which is a string
     """
-    t = language.lemmatize(t)
-    if head:
-        head = language.lemmatize(language.real_head(t, head, blacklist))
-    res = None
     if t in terms:
-        closest[t] = set()
-        closest[t].add(t)
-
-        res = set(i for i in terms[t].subsets)
-        if not res:
-            discarded[t] = head
-            reasons[t] = 'Term known but no type associated: %s, %s' % (t, head)
-            return
-        else:
-            reasons[t] = 'Term known and type associated: {0:s}, {1:s}, ' \
-                         '{2:s}'.format(t, head, '|'.join(res))
-
+        closest[t].add({t, })
+        reasons[t] = 'Term known. Exact match: %s' % t
     elif head:
-        if head in heads:
-            res = subsets_by_head(t, head)
-            if not res:
-                discarded[t] = head
-                reasons[
-                    t] = 'Term unknown, head known but no type associated: ' \
-                         '%s, %s' % (t, head)
-                return
-            else:
-                reasons[
-                    t] = 'Term unknown, head known and type associated: %s, ' \
-                         '%s, %s' % (t, head, '|'.join(str(i) for i in res))
-    if res:
-        tagged[t] = res
+        head = language.real_head(t, head, blacklist)
+        res = closest_by_head(t, head)
+        if res:
+            reasons[t] = 'Term unknown, head known. Closest term: %s, ' \
+                         '%s, %s' % (t, head, res)
     else:
         discarded[t] = head
         reasons[t] = 'Term and head unknown: %s, %s' % (t, head)
@@ -116,19 +83,6 @@ class Term(object):
                     yield p
                     for a in terms[p].ancestors():
                         yield a
-
-    @property
-    def subsets(self):
-        """Finds, sometimes recursively, the types (subsets) of a concept."""
-        if hasattr(self, '_subsets'):
-            for subset in self._subsets:
-                yield subset
-        else:
-            if hasattr(self, 'parents'):
-                for p in self.parents:
-                    if p in terms:
-                        for s in terms[p].subsets:
-                            yield s
 
     def __repr__(self):
         """The string representation of q term."""

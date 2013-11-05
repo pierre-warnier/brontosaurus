@@ -34,14 +34,13 @@ def bow_jac_dist(s1, s2):
     return jaccard(set1, set2)
 
 
-def real_head(t, head, blacklist=None):
+def real_head(t, head, blacklist):
     """Whenever the head is uninformative, find another one.
+    :rtype : the resulting head which is a string
     :param t: a term which is a string
     :param head: the current head word of that term
     :param blacklist: a list of uninformative heads
     """
-    if not blacklist:
-        blacklist = set()
     if head in blacklist:
         l = list(i for i in word_tokenize(t) if i not in blacklist)
         if l:

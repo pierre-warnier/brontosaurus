@@ -100,9 +100,6 @@ def cleaning_helper():
                 if p in terms and k in terms[p].synonyms:
                     print("'{0:s}' is a synonym of its parent: "
                           "'{1:s}'".format(k, p))
-        if not set(v.subsets):
-            print("'%s' none of its ancestors are typed '%s'" % (
-                k, tuple(v.ancestors())))
 
 
 if __name__ == '__main__':

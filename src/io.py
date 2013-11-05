@@ -40,22 +40,10 @@ def read_heads(fd, action):
                 #term.Term(name=term, head=head, parents=set((candidate,)))
     # We just want to tag
     elif action == 'tag':
-        # No lemmatization at this point
         for t, head in s:
-            term.tag(t, head)
+            term.tag(language.lemmatize(t), language.lemmatize(head))
     else:
         print("read_heads: Action unknown!")
-
-
-def read_types(fd):
-    """Reads a list of term/type.
-    :rtype : None
-    :param fd: a file descriptor opened in read mode
-    """
-    s = set((t.strip(), _type.strip()) for t, _type in
-            (line.split('\t') for line in fd if not line.startswith('#')))
-    for t, _type in s:
-        term.Term(name=t, _subsets=set)
 
 
 def read_lemma(fd):
@@ -70,7 +58,6 @@ def read_lemma(fd):
 
 re_term = re.compile('^\[Term\]$')
 re_name = re.compile('^name:\s(.+)')
-re_subset = re.compile('^subset:\s(.+)')
 #re_synonym = re.compile('^(?:exact|related)_synonym: "(.+)"')
 re_synonym = re.compile('^synonym: " ?(.+) ?"')
 re_is_obsolete = re.compile('^is_obsolete: true')
@@ -83,7 +70,7 @@ def read_terms(fd):
     :param fd: a file descriptor opened in read mode
     """
     is_obsolete = False
-    name, subsets, is_a, synonyms = None, set(), set(), set()
+    name, is_a, synonyms = None, set(), set()
     for line in fd:
         if not line.startswith('#'):
             line = line.strip()
@@ -91,23 +78,15 @@ def read_terms(fd):
                 try:
                     if not is_obsolete:
                         # Here we create or update a term
-                        term.Term(name=name, parents=is_a, _subsets=subsets,
-                                  synonyms=synonyms)
+                        term.Term(name=name, parents=is_a, synonyms=synonyms)
                 except UnboundLocalError:
                     pass
-                name, subsets, is_a, synonyms = None, set(), set(), set()
+                name, is_a, synonyms = None, set(), set()
                 is_obsolete = False
                 continue
             m = re_name.match(line)
             if m:
                 name = m.group(1).strip().lower()
-                continue
-            m = re_subset.match(line)
-            if m:
-                subset = m.group(1).lower()
-                if subset.lower() != 'envo-lite-gsc'.lower():  # unneeded
-                # legacy type
-                    subsets.add(m.group(1).lower())
                 continue
             m = re_is_a.match(line)
             if m:
@@ -126,7 +105,7 @@ def read_terms(fd):
 def save(prefix):
     """Dumps the memory content
     :rtype : None
-    :param prefix: a prefixing string to all save filenames
+    :param prefix: a prefixing string to all save file names
     """
     # head lemma
     fd = codecs.open(prefix + u'_term_lemma.csv', 'wb', 'UTF-8')
