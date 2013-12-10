@@ -2,7 +2,7 @@
 """
 This file deals with all language manipulations.
 """
-from nltk import word_tokenize
+#from nltk import word_tokenize
 
 lemma = dict()
 
@@ -26,11 +26,12 @@ def jaccard(s1, s2):
 
 
 def bow_jac_dist(s1, s2):
-    """Bag of word jaccard distance between two muli-word concepts.
+    """Bag of word jaccard distance between two multi-word concepts.
     :param s1: a string of one or many words
     :param s2: another string of one or many words
     """
-    set1, set2 = set(word_tokenize(s1)), set(word_tokenize(s2))
+    #set1, set2 = set(word_tokenize(s1)), set(word_tokenize(s2))
+    set1, set2 = set(s1.split()), set(s2.split())
     return jaccard(set1, set2)
 
 
@@ -43,7 +44,7 @@ def real_head(t, head, blacklist=None):
     if not blacklist:
         blacklist = set()
     if head in blacklist:
-        l = list(i for i in word_tokenize(t) if i not in blacklist)
+        l = list(i for i in t.split() if i not in blacklist)
         if l:
             return l[-1]
     return head

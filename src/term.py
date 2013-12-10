@@ -103,7 +103,7 @@ class Term(object):
                 kwargs['synonym_of'].add(name)
                 Term(name=s, **kwargs)
         if self.name in terms:
-            self.__dict__ = onto_utils.fusion_dict(terms[self.name],
+            self.__dict__ = onto_utils.fusion_dict(terms[self.name].__dict__,
                                                    self.__dict__)
         else:
             terms[self.name] = self

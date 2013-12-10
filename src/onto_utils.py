@@ -1,10 +1,10 @@
-# coding=utf-
+# coding=utf-8
 """
 A collection of helper functions.
 """
 import collections
 
-from term import terms
+import term
 
 
 def fusion_dict(d1, d2):
@@ -81,7 +81,7 @@ def cleaning_helper():
     """A helper function that detects obvious flows in the ontology.
     :rtype : None. This function prints its outputs.
     """
-    for k, v in terms.items():
+    for k, v in term.terms.items():
         if hasattr(v, 'parents'):
             # self loops
             if k in v.parents:
@@ -90,14 +90,14 @@ def cleaning_helper():
                 # orphans
             #to_ditch = set()
             for p in v.parents:
-                if p not in terms:
+                if p not in term.terms:
                     print("'{0:s}': orphan, parent: '{1:s}' "
                           "not in ontology".format(k, p))
                     #        to_ditch.add(p)
                     #v.parents = v.parents - to_ditch
                     # term is a synonym of its parent
             for p in v.parents:
-                if p in terms and k in terms[p].synonyms:
+                if p in term.terms and hasattr(term.terms[p], 'synonyms') and k in term.terms[p].synonyms:
                     print("'{0:s}' is a synonym of its parent: "
                           "'{1:s}'".format(k, p))
         if not set(v.subsets):

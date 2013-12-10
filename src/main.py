@@ -21,8 +21,8 @@ BLACKLIST_OK = sys.argv[3] == 'True'
 ONTO_OK = sys.argv[4] == 'True'
 FLAT_OK = sys.argv[5] == 'True'
 
-BASE_DATA = '%s/data/%s/' % (TASK, EXPE)
-BASE_DUMPS = '%s/dumps/%s/' % (TASK, EXPE)
+BASE_DATA = '%s/%s/data' % (TASK, EXPE)
+BASE_DUMPS = '%s/%s/dumps' % (TASK, EXPE)
 
 print('-' * 80)
 print('Reading folder: %s' % BASE_DATA)
@@ -39,17 +39,17 @@ print('-' * 80)
 ################################################################################
 
 print('Reading lemma')
-read_lemma(codecs.open(u'{0}lemma'.format(BASE_DATA), encoding='UTF-8'))
+read_lemma(codecs.open(u'{0}/lemma'.format(BASE_DATA), encoding='UTF-8'))
 print('%d lemma read.' % len(lemma))
-print()
+print('')
 
 if BLACKLIST_OK:
     print('Reading blacklist')
     read_blacklist(
-        codecs.open(u'{0}blacklist'.format(BASE_DATA), encoding='UTF-8'))
+        codecs.open(u'{0}/blacklist'.format(BASE_DATA), encoding='UTF-8'))
 
     print('Blacklist content: {0:s}'.format(', '.join(term.blacklist)))
-    print()
+    print('')
 
 print('-' * 80)
 
@@ -60,25 +60,25 @@ if ONTO_OK:
     print('-' * 80)
     ############################################################################
     print("Reading onto")
-    read_terms(codecs.open(u'{0}onto'.format(BASE_DATA)))
+    read_terms(codecs.open(u'{0}/onto'.format(BASE_DATA)))
     print('%d terms currently in memory.' % len(term.terms))
-    print()
+    print('')
     print('The following inconsistencies were found in the ontology:')
     cleaning_helper()
-    print()
+    print('')
 
     print("Reading onto heads")
-    read_heads(codecs.open(u'{0}heads_tolearn_onto'.format(BASE_DATA),
+    read_heads(codecs.open(u'{0}/heads_tolearn_onto'.format(BASE_DATA),
                            encoding='UTF-8'), action='learn')
 
     print('%d terms currently in memory.' % len(term.terms))
-    print()
+    print('')
     print('The following inconsistencies were found in the ontology:')
     cleaning_helper()
-    print()
+    print('')
 
     print("Saving after learning onto")
-    save(prefix=u'{0:s}{1:s}_after_learning_onto'.format(BASE_DUMPS, EXPE))
+    save(prefix=u'{0:s}/{1:s}_after_learning_onto'.format(BASE_DUMPS, EXPE))
     print('-' * 80)
 
 if FLAT_OK:
@@ -89,19 +89,19 @@ if FLAT_OK:
     ############################################################################
 
     print("Reading flat resources types")
-    read_types(codecs.open(u'{0}types'.format(BASE_DATA), encoding='UTF-8'))
+    read_types(codecs.open(u'{0}/types'.format(BASE_DATA), encoding='UTF-8'))
     print('%d terms currently in memory.' % len(term.terms))
-    print()
+    print('')
 
     print("Reading flat resources heads")
-    read_heads(codecs.open(u'{0}heads_tolearn_dico'.format(BASE_DATA),
+    read_heads(codecs.open(u'{0}/heads_tolearn_dico'.format(BASE_DATA),
                            encoding='UTF-8'), action='learn')
 
     print('%d terms currently in memory.' % len(term.terms))
-    print()
+    print('')
 
     print("Saving after learning flat resources")
-    save(prefix=u'{0:s}{1:s}_after_learning_flat_resources'.format(BASE_DUMPS,
+    save(prefix=u'{0:s}/{1:s}_after_learning_flat_resources'.format(BASE_DUMPS,
                                                                    EXPE))
 
     print('-' * 80)
@@ -113,14 +113,14 @@ print('-' * 80)
 ################################################################################
 
 print("Tagging heads")
-read_heads(codecs.open(u'{0}heads_totag'.format(BASE_DATA), encoding='UTF-8'),
+read_heads(codecs.open(u'{0}/heads_totag'.format(BASE_DATA), encoding='UTF-8'),
            action='tag')
 
 print('%d terms tagged.' % len(term.tagged))
-print()
+print('')
 
 print("Saving after tagging")
-save(prefix=BASE_DUMPS + EXPE + u'_after_tagging')
+save(prefix=u'%s/%s_after_tagging' %(BASE_DUMPS, EXPE))
 print('-' * 80)
 
 #############################################################################
