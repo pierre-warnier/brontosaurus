@@ -1,0 +1,447 @@
+pest resistance	pest resistance	resistance
+Pseudaletia unipuncta resistance	Pseudaletia unipuncta resistance	resistance
+insect resistance	insect resistance	resistance
+resistance to Septoria Leaf Blotch	resistance to Septoria Leaf Blotch	resistance
+resistance to Septoria tritici	resistance to Septoria tritici	resistance
+bacterial leaf blight resistance	bacterial leaf blight resistance	resistance
+response to excessive rain	response to excessive rain	response
+starch viscosity	starch viscosity	viscosity
+plant height	plant height	height
+photoperiod sensitivity	photoperiod sensitivity	sensitivity
+cobalt toxicity	cobalt toxicity	toxicity
+resistance to Sharp Eyespot	resistance to Sharp Eyespot	resistance
+resistance to a gray leaf	resistance to a gray leaf	resistance
+Cu toxicity	Cu toxicity	toxicity
+yellow pigment flour	yellow pigment flour	flour
+heat shock resistance	heat shock resistance	resistance
+vigour	vigour	vigour
+tiller number per plant	tiller number per plant	tiller number
+resistance to RWA	resistance to RWA	resistance
+ability to flower	ability to flower	ability
+resistance to Pseudomonas syringae pv. syringae	resistance to Pseudomonas syringae pv. syringae	resistance
+Russian wheat aphid resistance	Russian wheat aphid resistance	resistance
+resistance to a fungal pathogen	resistance to a fungal pathogen	resistance
+resistance to Sclerotium rolfsii	resistance to Sclerotium rolfsii	resistance
+seed colour	seed colour	colour
+resistance to Black Molds	resistance to Black Molds	resistance
+resistance to Clavibacter tritici infection	resistance to Clavibacter tritici infection	resistance
+resistance to black rust	resistance to black rust	resistance
+weak response to vernalization	weak response to vernalization	response
+resistance to Alternaria leaf blight	resistance to Alternaria leaf blight	resistance
+scab resistance	scab resistance	resistance
+Faronta diffusa resistance	Faronta diffusa resistance	resistance
+resistance to HLB	resistance to HLB	resistance
+resistance to Drechslera sorokiniana	resistance to Drechslera sorokiniana	resistance
+resistance to foot rot	resistance to foot rot	resistance
+shoot number per m2	shoot number per m2	number
+resistance to Sclerophthora macrospora	resistance to Sclerophthora macrospora	resistance
+heritable male sterility	heritable male sterility	sterility
+resistance to Diuraphis noxia Kurdjumov	resistance to Diuraphis noxia Kurdjumov	resistance
+resistance to Puccinia striiformis	resistance to Puccinia striiformis	resistance
+resistance to yellow rot	resistance to yellow rot	resistance
+earliness	earliness	earliness
+stem rust resistance	stem rust resistance	resistance
+shoot density	shoot density	density
+resistance to Cirsium arvense	resistance to Cirsium arvense	resistance
+seed protein content	seed protein content	content
+grain number per ear	grain number per ear	number
+metal rhizotoxicity	metal rhizotoxicity	rhizotoxicity
+Pythium root rot resistance	Pythium root rot resistance	resistance
+phosphate deficiency	phosphate deficiency	deficiency
+primary nutrient deficiency	primary nutrient deficiency	deficiency
+resistance to Cochliobolus spicifer	resistance to Cochliobolus spicifer	resistance
+insect resistance trait	insect resistance trait	trait
+resistance to seedling blight	resistance to seedling blight	resistance
+Ni toxicity	Ni toxicity	toxicity
+resistance to Alternaria triticina	resistance to Alternaria triticina	resistance
+bacterial infection resistance	bacterial infection resistance	resistance
+resistance to Helminthosporium spiciferum	resistance to Helminthosporium spiciferum	resistance
+resistance to Drechslera leaf blight	resistance to Drechslera leaf blight	resistance
+bacterial disease resistance	bacterial disease resistance	resistance
+PHS	PHS	PHS
+vernalization	vernalization	vernalization
+chemosensitivity	chemosensitivity	chemosensitivity
+grain mass per ear	grain mass per ear	mass
+plant shoot density	plant shoot density	density
+grain dormancy	grain dormancy	dormancy
+Hg toxicity	Hg toxicity	toxicity
+resistance to Pseudocercosporella herpotrichoides	resistance to Pseudocercosporella herpotrichoides	resistance
+response to water stress	response to water stress	response
+wheat moth resistance	wheat moth resistance	resistance
+resistance to brown rust	resistance to brown rust	resistance
+Al toxicity	Al toxicity	toxicity
+resistance to spike blight	resistance to spike blight	resistance
+increased resistance to rot	increased resistance to rot	resistance
+grain number per square meter	grain number per square meter	number
+kernel number per square meter	kernel number per square meter	number
+resistance to Alternaria leaf spot	resistance to Alternaria leaf spot	resistance
+resistance to spot blotch	resistance to spot blotch	resistance
+resistance to Black Point	resistance to Black Point	resistance
+resistance to Rhizoctonia root rot	resistance to Rhizoctonia root rot	resistance
+flour color	flour color	color
+resistance to wheat dwarf	resistance to wheat dwarf	resistance
+fungal disease resistance	fungal disease resistance	resistance
+rhizotoxicity	rhizotoxicity	rhizotoxicity
+sterile trait	sterile trait	trait
+greenbug resistance	greenbug resistance	resistance
+grain weight per ear	grain weight per ear	weight
+habit	habit	habit
+salt resistance	salt resistance	resistance
+resistance to Rathayibacter tritici	resistance to Rathayibacter tritici	resistance
+resistance to Tan Spot	resistance to Tan Spot	resistance
+resistance to Crown Rot	resistance to Crown Rot	resistance
+resistance to the plant pathogen Colletotrichum	resistance to the plant pathogen Colletotrichum	resistance
+resistance to American Wheat Striate Mosaic	resistance to American Wheat Striate Mosaic	resistance
+phosphorus deficiency	phosphorus deficiency	deficiency
+shade tolerance	shade tolerance	tolerance
+resistance to Cephalosporium stripe	resistance to Cephalosporium stripe	resistance
+lack of seed dormancy	lack of seed dormancy	lack
+storage pest resistance	storage pest resistance	resistance
+boron toxicity	boron toxicity	toxicity
+resistance to corky root rot	resistance to corky root rot	resistance
+grain colour	grain colour	colour
+gray leaf spot resistance	gray leaf spot resistance	resistance
+Euxoa auxiliaris resistance	Euxoa auxiliaris resistance	resistance
+level of starch-surface friabilin	level of starch-surface friabilin	level
+resistance to Ophiobolus graminis	resistance to Ophiobolus graminis	resistance
+resistance to Leptosphaeria nodorum	resistance to Leptosphaeria nodorum	resistance
+resistance to arthropod	resistance to arthropod	resistance
+GPC	GPC	GPC
+resistance to yellow rust	resistance to yellow rust	resistance
+resistance to Common Root Rot	resistance to Common Root Rot	resistance
+phosphate limitation	phosphate limitation	limitation
+resistance to Tilletia caries	resistance to Tilletia caries	resistance
+plant tiller density	plant tiller density	density
+resistance to bacterial glume rot	resistance to bacterial glume rot	resistance
+high grain protein content	high grain protein content	content
+resistance to Xanthomonas campestris pv. translucens	resistance to Xanthomonas campestris pv. translucens	resistance
+resistance to seed gall nematode	resistance to seed gall nematode	resistance
+resistance to wheat dwarf virus	resistance to wheat dwarf virus	virus
+resistance to cereal cyst nematode	resistance to cereal cyst nematode	resistance
+aphid resistance	aphid resistance	resistance
+potyvirus resistance	potyvirus resistance	resistance
+resistance to soft rot	resistance to soft rot	resistance
+arsenic toxicity	arsenic toxicity	toxicity
+toxin sensitivity	toxin sensitivity	sensitivity
+resistance to scab crown rot	resistance to scab crown rot	resistance
+frost resistance	frost resistance	resistance
+resistance to powdery mildew	resistance to powdery mildew	resistance
+copper toxicity	copper toxicity	toxicity
+resistance to Khapra beetle	resistance to Khapra beetle	resistance
+dough strength	dough strength	strength
+resistance to lepidopteran insect infestation	resistance to lepidopteran insect infestation	infestation
+lodging resistance	lodging resistance	resistance
+resistance to Helminthosporium tetramera	resistance to Helminthosporium tetramera	resistance
+resistance to a plant pathogen	resistance to a plant pathogen	resistance
+resistance to Macrosteles quadrilineatus	resistance to Macrosteles quadrilineatus	resistance
+crumb colour	crumb colour	colour
+leafhopper resistance	leafhopper resistance	resistance
+resistance to Corticum rolfsii	resistance to Corticum rolfsii	resistance
+resistance to Tilletia foetida	resistance to Tilletia foetida	resistance
+B toxicity	B toxicity	toxicity
+resistance to Ergot	resistance to Ergot	resistance
+wheat midge resistance	wheat midge resistance	resistance
+level of polyphenol oxidase activity	level of polyphenol oxidase activity	level
+resistance to P. tritici-repentis	resistance to P. tritici-repentis	resistance
+resistance to density	resistance to density	resistance
+FHB resistance	FHB resistance	resistance
+plant vigour	plant vigour	vigour
+resistance to the bacterial disease	resistance to the bacterial disease	resistance
+reproduction	reproduction	reproduction
+damaged starch	damaged starch	starch
+resistance to Colletotrichum	resistance to Colletotrichum	resistance
+stress from soil	stress from soil	stress
+resistance to Rhizoctonia Root Rot	resistance to Rhizoctonia Root Rot	resistance
+EBT	EBT	EBT
+heavy metal toxicity	heavy metal toxicity	toxicity
+resistance to Snow Mold	resistance to Snow Mold	resistance
+flooding tolerance	flooding tolerance	tolerance
+metal toxicity	metal toxicity	toxicity
+resistance to S. nodorum	resistance to S. nodorum	resistance
+photoperiodic response	photoperiodic response	response
+resistance to Drechslera tritici-repentis	resistance to Drechslera tritici-repentis	resistance
+resistance to Helminthhosporium tritici-repentis	resistance to Helminthhosporium tritici-repentis	resistance
+resistance to leaf blight	resistance to leaf blight	resistance
+resistance to Cephalosporium gramineum	resistance to Cephalosporium gramineum	resistance
+resistance to leaf blotch	resistance to leaf blotch	resistance
+resistance to head blight	resistance to head blight	resistance
+fiber quality	fiber quality	quality
+early heading	early heading	heading
+flour mechanical property	flour mechanical property	property
+nitrogen deficiency	nitrogen deficiency	deficiency
+resistance to Southern Blight	resistance to Southern Blight	resistance
+nickel toxicity	nickel toxicity	toxicity
+plant precocity	plant precocity	precocity
+photoperiodic sensitivity	photoperiodic sensitivity	sensitivity
+resistance to septoria	resistance to septoria	resistance
+seed germinability	seed germinability	germinability
+resistance to Ascochyta tritici	resistance to Ascochyta tritici	resistance
+high temperature resistance	high temperature resistance	resistance
+resistance to Sclerospora macrospora	resistance to Sclerospora macrospora	resistance
+resistance to black chaff	resistance to black chaff	resistance
+nematode resistance	nematode resistance	resistance
+floral initiation	floral initiation	initiation
+nutrient deficiency	nutrient deficiency	deficiency
+swelling index of glutenin	swelling index of glutenin	index
+flour resistance to deformation	flour resistance to deformation	resistance
+flour colour	flour colour	colour
+response to environmental condition	response to environmental condition	response
+grain hardness	grain hardness	hardness
+resistance to Magnaporthe grisea	resistance to Magnaporthe grisea	resistance
+resistance to Michrodochium seedling blight	resistance to Michrodochium seedling blight	resistance
+multiple disease resistant/tolerant	multiple disease resistant/tolerant	resistant/tolerant
+dough extensibility	dough extensibility	extensibility
+resistance to Lepidopteran	resistance to Lepidopteran	resistance
+single-kernel hardness	single-kernel hardness	hardness
+resistance to wheat streak mosaic	resistance to wheat streak mosaic	resistance
+primary nutrient limitation	primary nutrient limitation	limitation
+resistance to Meloidogyne spp.	resistance to Meloidogyne spp.	resistance
+resistance to invertebrate pest	resistance to invertebrate pest	resistance
+phophorus deficiency	phophorus deficiency	deficiency
+resistance to a pathogen	resistance to a pathogen	resistance
+resistance to Monographella nivalis var. nivalis	resistance to Monographella nivalis var. nivalis	resistance
+zinc toxicity	zinc toxicity	toxicity
+Armyworm resistance	Armyworm resistance	resistance
+level of PPO activity	level of PPO activity	level
+tolerance to metal deficiency	tolerance to metal deficiency	tolerance
+harvest index	harvest index	index
+resistance to Anthracnose	resistance to Anthracnose	resistance
+resistance to taro leaf blight	resistance to taro leaf blight	resistance
+resistance to Puccinia recondita	resistance to Puccinia recondita	resistance
+manganese toxicity	manganese toxicity	toxicity
+disease and/or pathogen resistance	disease and/or pathogen resistance	resistance
+flowering duration	flowering duration	duration
+resistance to WSMV	resistance to WSMV	resistance
+resistance to noxious weed	resistance to noxious weed	resistance
+resistance to the plant pathogen	resistance to the plant pathogen	resistance
+resistance to insect	resistance to insect	resistance
+resistance to Pyricularia grisea	resistance to Pyricularia grisea	resistance
+extreme temperature resistance	extreme temperature resistance	resistance
+biotic stress resistance	biotic stress resistance	resistance
+photosensitivity	photosensitivity	photosensitivity
+longevity	longevity	longevity
+resistance to Sclerotium Wilt	resistance to Sclerotium Wilt	resistance
+improved fiber quality	improved fiber quality	quality
+stalk lodging resistance	stalk lodging resistance	resistance
+nitrogen limitation	nitrogen limitation	limitation
+resistance to AWStMV	resistance to AWStMV	resistance
+germinative power	germinative power	power
+root rot resistance	root rot resistance	resistance
+resistance to Helminthosporium Leaf Blight	resistance to Helminthosporium Leaf Blight	resistance
+resistance to the dutch Bremia races	resistance to the dutch Bremia races	resistance
+response to vernalization	response to vernalization	response
+wind resistance	wind resistance	resistance
+grain yield	grain yield	yield
+resistance to downy mildew	resistance to downy mildew	resistance
+cold resistance	cold resistance	resistance
+resistance to Yellow Leaf Spot or Blotch	resistance to Yellow Leaf Spot or Blotch	resistance
+precocity	precocity	precocity
+powdery mildew resistance	powdery mildew resistance	resistance
+resistance to a plant bacterial pathogen	resistance to a plant bacterial pathogen	resistance
+rust resistance	rust resistance	resistance
+response to biotic stress	response to biotic stress	response
+Number of ear-bearing tillers per meter row	Number of ear-bearing tillers per meter row	number
+germinability	germinability	germinability
+coleoptile length	coleoptile length	length
+disease resistance	disease resistance	resistance
+resistance to noxious plant	resistance to noxious plant	resistance
+multiple disease resistance	multiple disease resistance	resistance
+resistance to Puccinia triticina infection	resistance to Puccinia triticina infection	resistance
+resistance to Septoria Avenae Blotch	resistance to Septoria Avenae Blotch	resistance
+milling quality	milling quality	quality
+female sterility	female sterility	sterility
+resistance to gall midge	resistance to gall midge	resistance
+seed characteristic	seed characteristic	characteristic
+late blight resistance	late blight resistance	resistance
+resistance to the closterovirus	resistance to the closterovirus	resistance
+plant property	plant property	property
+grey leaf blight resistance	grey leaf blight resistance	resistance
+superior grey leaf blight resistance	superior grey leaf blight resistance	resistance
+polyphenol oxidase activity	polyphenol oxidase activity	activity
+resistance to insect pest	resistance to insect pest	pest
+flag leaf emergence	flag leaf emergence	emergence
+root lodging resistance	root lodging resistance	resistance
+resistance to wheat streak mosaic virus	resistance to wheat streak mosaic virus	virus
+ear emergence time	ear emergence time	time
+billbug resistance	billbug resistance	resistance
+resistance to bunt	resistance to bunt	resistance
+substantial resistance to a gray leaf	substantial resistance to a gray leaf	resistance
+Co toxicity	Co toxicity	toxicity
+resistance to phytoplasma	resistance to phytoplasma	resistance
+fertility	fertility	fertility
+resistance to Foot Rot	resistance to Foot Rot	resistance
+Chloris Striate Mosaic resistance	Chloris Striate Mosaic resistance	resistance
+geminivirus resistance	geminivirus resistance	resistance
+flour composition	flour composition	composition
+potassium limitation	potassium limitation	limitation
+glutenin content	glutenin content	content
+resistance to Leptosphaeria avenaria f.sp. triticea	resistance to Leptosphaeria avenaria f.sp. triticea	resistance
+Microdochium nivale	Microdochium nivale	nivale
+resistance to potyvirus	resistance to potyvirus	resistance
+height	height	height
+Hessian fly resistance	Hessian fly resistance	resistance
+resistance to bacterial disease	resistance to bacterial disease	resistance
+resistance to geminivirus	resistance to geminivirus	resistance
+resistance to Al	resistance to Al	resistance
+sterility	sterility	sterility
+spikelet number	spikelet number	number
+resistance to dwarf bunt	resistance to dwarf bunt	resistance
+amount of damaged starch	amount of damaged starch	amount
+resistance to rot	resistance to rot	resistance
+semolina color	semolina color	color
+tolerance to aluminium deficiency	tolerance to aluminium deficiency	tolerance
+resistance to Cercosporella herpotrichoides	resistance to Cercosporella herpotrichoides	resistance
+resistance to the disease clubroot	resistance to the disease clubroot	resistance
+ear size	ear size	size
+resistance to Bipolaris sorokiniana	resistance to Bipolaris sorokiniana	resistance
+cadmium toxicity	cadmium toxicity	toxicity
+resistance to Alternaria Leaf Blight	resistance to Alternaria Leaf Blight	resistance
+resistance Pink snow mold	resistance Pink snow mold	mold
+male sterility	male sterility	msterility
+resistance to Tilletia controversa	resistance to Tilletia controversa	resistance
+resistance to Colletotrichum infection	resistance to Colletotrichum infection	infection
+leaf rust resistance	leaf rust resistance	resistance
+protein content of seed	protein content of seed	content
+resistance to Rhizoctonia solani	resistance to Rhizoctonia solani	resistance
+resistance to Fusarium head blight resistance	resistance to Fusarium head blight resistance	resistance
+discoloration of flour	discoloration of flour	discoloration
+resistance to Sooty Molds	resistance to Sooty Molds	resistance
+Cr toxicity	Cr toxicity	toxicity
+semolina	semolina	semolina
+resistance to Pseudomonas syringae pv. atrofaciens	resistance to Pseudomonas syringae pv. atrofaciens	resistance
+resistance to flag smut	resistance to flag smut	resistance
+resistance to Euxoa auxiliaris	resistance to Euxoa auxiliaris	resistance
+resistance to Colletotrichum graminicola	resistance to Colletotrichum graminicola	graminicola
+bread smell	bread smell	smell
+resistance to Cochliobolus sativus	resistance to Cochliobolus sativus	resistance
+gliadin content	gliadin content	content
+aluminium toxicity	aluminium toxicity	toxicity
+resistance to Erysiphe graminis f. sp. tritici	resistance to Erysiphe graminis f. sp. tritici	resistance
+dominant resistance to clubroot	dominant resistance to clubroot	resistance
+soil stress	soil stress	stress
+plant longevity	plant longevity	longevity
+resistance to Pyrenophora trichostoma	resistance to Pyrenophora trichostoma	resistance
+drought tolerance	drought tolerance	tolerance
+lack of vernalization requirement	lack of vernalization requirement	lack
+resistance to Aster Yellows	resistance to Aster Yellows	resistance
+resistance to Sitodiplosis mosellana	resistance to Sitodiplosis mosellana	resistance
+heritable trait	heritable trait	trait
+virus resistance	virus resistance	resistance
+Zn toxicity	Zn toxicity	toxicity
+resistance to Pyrenophora tritici-repentis	resistance to Pyrenophora tritici-repentis	resistance
+resistance to Anthoxanthum Mosaic	resistance to Anthoxanthum Mosaic	resistance
+resistance to CCN	resistance to CCN	resistance
+resistance to Lepidopteran insect	resistance to Lepidopteran insect	resistance
+baking quality	baking quality	quality
+viral resistance	viral resistance	resistance
+resistance to Mayetiola destructor	resistance to Mayetiola destructor	resistance
+response to winter hardiness	response to winter hardiness	response
+resistance to Claviceps purpurea	resistance to Claviceps purpurea	resistance
+potassium deficiency	potassium deficiency	deficiency
+resistance to Curvularia spicifera	resistance to Curvularia spicifera	resistance
+grain protein content	grain protein content	content
+Cecidomyides resistance	Cecidomyides resistance	resistance
+Fusarium resistance	Fusarium resistance	resistance
+resistance to chlorsulfuron	resistance to chlorsulfuron	resistance
+resistance to Hymenula cerealis	resistance to Hymenula cerealis	resistance
+tolerance to boron deficiency	tolerance to boron deficiency	tolerance
+semolina characteristic	semolina characteristic	characteristic
+resistance to loose smut	resistance to loose smut	resistance
+aluminium resistance	aluminium resistance	resistance
+resistance to imidazolinone	resistance to imidazolinone	resistance
+plant habit	plant habit	habit
+resistance to infection	resistance to infection	resistance
+salt tolerance	salt tolerance	tolerance
+pathogen resistance	pathogen resistance	resistance
+resistance to Take-All	resistance to Take-All	resistance
+resistance to viral disease	resistance to viral disease	resistance
+resistance to Septoria nodorum blotch	resistance to Septoria nodorum blotch	resistance
+resistance to common bunt	resistance to common bunt	resistance
+resistance to helminthosporiosis	resistance to helminthosporiosis	resistance
+seed dormancy	seed dormancy	dormancy
+HI	HI	HI
+sensitivity to photoperiod	sensitivity to photoperiod	sensitivity
+response to water deficiency	response to water deficiency	response
+disease-resistance	disease-resistance	resistance
+response to abiotic stress	response to abiotic stress	response
+development character	development character	character
+resistance to WDV	resistance to WDV	resistance
+mercury toxicity	mercury toxicity	toxicity
+milling	milling	milling
+resistance to Karnal bunt	resistance to Karnal bunt	resistance
+early maturation	early maturation	maturation
+resistance to Blumeria graminis	resistance to Blumeria graminis	resistance
+resistance to Helminthosporium sativum	resistance to Helminthosporium sativum	resistance
+heat resistance	heat resistance	resistance
+Verticillium race 2 resistance	Verticillium race 2 resistance	resistance
+GY	GY	GY
+resistance to Gaeumannomyces graminis f. sp. tritici	resistance to Gaeumannomyces graminis f. sp. tritici	resistance
+resistance to Ascochyta Leaf Spot	resistance to Ascochyta Leaf Spot	resistance
+Pb toxicity	Pb toxicity	toxicity
+resistance to orange wheat blossom midge	resistance to orange wheat blossom midge	resistance
+resistance to Ustilago tritici	resistance to Ustilago tritici	resistance
+resistance to mildew	resistance to mildew	resistance
+bread making quality	bread making quality	quality
+cytoplasmic male sterility	cytoplasmic male sterility	sterility
+resistance to Stinking Smut	resistance to Stinking Smut	resistance
+resistance to Fusarium Leaf Blotch	resistance to Fusarium Leaf Blotch	resistance
+ear number per meter of row	ear number per meter of row	number
+resistance to root-knot nematode	resistance to root-knot nematode	resistance
+resistance to Urocystis agropyri	resistance to Urocystis agropyri	resistance
+high-molecular-weight Dx5 glutenin subunit	high-molecular-weight Dx5 glutenin subunit	subunit
+resistance to head scab	resistance to head scab	resistance
+resistance to wheat blast	resistance to wheat blast	resistance
+resistance to Macrosteles fascifrons	resistance to Macrosteles fascifrons	resistance
+time of ear emergence	time of ear emergence	time
+inositol deficiency	inositol deficiency	deficiency
+length of ear	length of ear	length
+crop yield	crop yield	yield
+resistance to Mycosphaerella graminicola	resistance to Mycosphaerella graminicola	resistance
+leaf number	leaf number	number
+As toxicity	As toxicity	toxicity
+resistance to Fusarium nivale	resistance to Fusarium nivale	resistance
+high molecular weight glutenin subunit	high molecular weight glutenin subunit	subunit
+resistance to Calonectria nivalis	resistance to Calonectria nivalis	resistance
+resistance to disease	resistance to disease	resistance
+resistance to Dryland root rot	resistance to Dryland root rot	resistance
+resistance to S. avenae f.sp. triticea	resistance to S. avenae f.sp. triticea	resistance
+shatter resistance	shatter resistance	resistance
+tolerance to micronutrient deficiency	tolerance to micronutrient deficiency	tolerance
+phophorus limitation	phophorus limitation	limitation
+toxin resistance	toxin resistance	resistance
+post-harvest seed dormancy	post-harvest seed dormancy	dormancy
+food property	food property	property
+chrome toxicity	chrome toxicity	toxicity
+resistance to Septoria tritici blotch	resistance to Septoria tritici blotch	resistance
+pre-harvest sprouting	pre-harvest sprouting	sprouting
+dominant resistance to the disease clubroot	dominant resistance to the disease clubroot	resistance
+resistance to atrazine	resistance to atrazine	resistance
+resistance to Eyespot	resistance to Eyespot	resistance
+stripe rust resistance	stripe rust resistance	resistance
+lead toxicity	lead toxicity	toxicity
+metalloid toxicity	metalloid toxicity	toxicity
+crumb firmness	crumb firmness	firmness
+resistance to Endria inimica	resistance to Endria inimica	resistance
+yellow pigment content of seed	yellow pigment content of seed	content
+resistance to Microdochium majus	resistance to Microdochium majus	resistance
+thousand kernel weight	thousand kernel weight	weight
+resistance to STB	resistance to STB	resistance
+Cd toxicity	Cd toxicity	toxicity
+slow leaf-rusting resistance	slow leaf-rusting resistance	resistance
+TKW	TKW	TKW
+plant resistance to a chemical agent	plant resistance to a chemical agent	agent
+improved fiber quality trait	improved fiber quality trait	trait
+tan spot resistance	tan spot resistance	resistance
+resistance to Puccinia graminis f.sp. tritici	resistance to Puccinia graminis f.sp. tritici	resistance
+resistance to Australian Wheat Striate Mosaic	resistance to Australian Wheat Striate Mosaic	resistance
+gluten strength	gluten strength	strength
+number of grains per square meter	number of grain per square meter	number
+resistance to chemicals	resistance to chemical	resistance
+resistance to herbicides	resistance to herbicide	resistance
+Mg toxicity	Mg toxicity	toxicity
+resistance to Army Cutworm	resistance to Army Cutworm	resistance
+resistance to aphids	resistance to aphid	resistance
+number of viable seeds per meter of row	number of viable seed per meter of row	number
+Sclerotium rolfsii	Sclerotium rolfsii	rolfsii
+Leaf spot resistance	leaf spot resistance	resistance
+resistance to pathogens	resistance to pathogen	resistance

@@ -1,0 +1,42 @@
+[wgolik@migale src]$ python main_typage.py typage_FSOVabstracts expe_211013 True True False
+RuntimeError: module compiled against API version 6 but this version of numpy is 4
+RuntimeError: module compiled against API version 6 but this version of numpy is 4
+--------------------------------------------------------------------------------
+Reading folder: /bibdev/travail/typage/typage_FSOVabstracts/data/expe_211013/
+Writing folder: /bibdev/travail/typage/typage_FSOVabstracts/dumps/expe_211013/
+Expects a blacklist: True
+Expects an ontology: True
+Expects a flat resource: False
+--------------------------------------------------------------------------------
+FIRST
+--------------------------------------------------------------------------------
+Reading lemma
+5440 lemma read.
+
+Reading blacklist
+Blacklist content: index, plant, level, number, content, amount, time, size
+
+--------------------------------------------------------------------------------
+LEARNING ONTO
+--------------------------------------------------------------------------------
+Reading onto
+445 terms currently in memory.
+
+The following inconsistencies were found in the ontology:
+
+Reading onto heads
+445 terms currently in memory.
+
+The following inconsistencies were found in the ontology:
+
+Saving after learning onto
+--------------------------------------------------------------------------------
+TAGGING
+--------------------------------------------------------------------------------
+Tagging heads
+208 terms tagged.
+
+Saving after tagging
+--------------------------------------------------------------------------------
+Done!
+--------------------------------------------------------------------------------

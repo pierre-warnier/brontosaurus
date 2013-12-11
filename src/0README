@@ -1,0 +1,58 @@
+Compared to legacy versions, some small details have changed like file
+paths. Check main.py for changes.
+
+15:09 - snape@moo:src $ python main.py
+~/Documents/bazaar/brontosaurus/data expe_211013 True True False
+------------------------------------------------------------------------
+--------
+Reading folder:
+/Users/snape/Documents/bazaar/brontosaurus/data/expe_211013/data
+Writing folder:
+/Users/snape/Documents/bazaar/brontosaurus/data/expe_211013/dumps
+Expects a blacklist: True
+Expects an ontology: True
+Expects a flat resource: False
+------------------------------------------------------------------------
+--------
+FIRST
+------------------------------------------------------------------------
+--------
+Reading lemma
+5440 lemma read.
+
+Reading blacklist
+Blacklist content: index, plant, level, number, content, amount, time,
+size
+
+------------------------------------------------------------------------
+--------
+LEARNING ONTO
+------------------------------------------------------------------------
+--------
+Reading onto
+446 terms currently in memory.
+
+The following inconsistencies were found in the ontology:
+'None' none of its ancestors are typed '()'
+
+Reading onto heads
+446 terms currently in memory.
+
+The following inconsistencies were found in the ontology:
+'None' none of its ancestors are typed '()'
+
+Saving after learning onto
+------------------------------------------------------------------------
+--------
+TAGGING
+------------------------------------------------------------------------
+--------
+Tagging heads
+200 terms tagged.
+
+Saving after tagging
+------------------------------------------------------------------------
+--------
+Done!
+------------------------------------------------------------------------
+--------
